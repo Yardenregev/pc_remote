@@ -1,7 +1,8 @@
 <div id="trackpad" 
         ontouchstart="startTouch(event)" 
         ontouchmove="moveTouch(event)" 
-        ontouchend="endTouch()">
+        ontouchend="endTouch()"
+        onclick="sendMouseClick()">
     <p style="text-align: center; margin-top: 130px;">Move your finger here</p>
 </div>
 
@@ -50,6 +51,25 @@
         .then(response => response.json())
         .then(data => {
             console.log('Mouse moved:', data.position);
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+    }
+
+    function sendMouseClick() {
+
+        fetch('/click_mouse/', {
+            method: 'POST',
+            body: JSON.stringify({button:'left'}),
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': getCSRFToken(),
+            },
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Mouse clicked!');
         })
         .catch((error) => {
             console.error('Error:', error);

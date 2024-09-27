@@ -36,3 +36,16 @@ def move_mouse(request):
         return JsonResponse({'status': 'success'})
     
     return JsonResponse({'status': 'error', 'message': 'Invalid request'})
+
+def click_mouse(request):
+    if request.method == 'POST':
+        body = json.loads(request.body.decode('utf-8'))
+        button = body.get('button','left')
+        try:
+            mouse.click_mouse(button)
+            return JsonResponse({'status': 'success', 'message': f'clicked button {button}'})
+        except Exception as e:
+            return JsonResponse({'status': 'error', 'message': str(e)})
+            
+    
+    return JsonResponse({'status': 'error', 'message': 'Invalid request'})

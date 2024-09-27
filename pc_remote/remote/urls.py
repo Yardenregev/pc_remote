@@ -6,5 +6,5 @@ urlpatterns = [
     path('keypress/', views.keypress, name='keypress'),
     path('input/', views.input, name='input'),
     path('move_mouse/', views.move_mouse, name='move_mouse'),
-    
+    path('click_mouse/', views.click_mouse, name='click_mouse'),
 ]

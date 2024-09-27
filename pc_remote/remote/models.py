@@ -2,6 +2,7 @@
 from pynput.keyboard import Controller as KeyboardController
 from pynput.keyboard import Key
 from pynput.mouse import Controller as MouseController
+from pynput.mouse import Button as MouseButton
 
 class KeyboardKey:
     
@@ -79,3 +80,11 @@ class Mouse:
         # Move the mouse relative to its current position
         current_x, current_y = self.controller.position
         self.controller.position = (current_x + x, current_y + y)
+    
+    def click_mouse(self, button="left"):
+        if button == "left":
+            self.controller.click(MouseButton.left)
+        elif button == "right":
+            self.controller.click(MouseButton.right)
+        else:
+            raise ValueError("Invalid button specified. Must be one of 'left' or 'right'.")
