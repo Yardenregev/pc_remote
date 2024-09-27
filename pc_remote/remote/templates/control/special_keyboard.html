@@ -1,0 +1,13 @@
+{% comment %} Arrows, delete, backspace,tab {% endcomment %}
+<div id="arrow-keys" class="keyboard">
+    {% for key in keyboard.arrow_keys %}
+    {% if key.empty_space == True %}
+        <span class="{% if key.width > 1 %}wide{% endif %}" 
+        style="grid-row: {{ key.row }}; grid-column: span {{ key.width }};"></span>
+    {% else %}
+        <button class="keyboard-button {% if key.width > 1 %}wide{% endif %}" 
+        style="grid-row: {{ key.row }}; grid-column: span {{ key.width }};" 
+        onclick="sendKey('{{ key.value }}')">{{ key.label }}</button>
+    {% endif %}
+    {% endfor %}
+</div>

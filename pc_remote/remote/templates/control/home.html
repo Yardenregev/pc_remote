@@ -12,7 +12,7 @@
             text-align: center;
             margin-top: 50px;
         }
-        #keyboard {
+        .keyboard {
             display: grid;
             grid-template-columns: repeat(15, 1fr); /* Adjust the number of columns as needed */
             gap: 10px; /* Space between buttons */
@@ -47,28 +47,31 @@
             cursor: pointer;
         }
         #inputForm {
+            display: flex;
+            flex-direction: row;
             text-align: center; /* Center the form */
             margin: 20px; /* Add some margin */
         }
     
         #inputField {
+            margin: 0 20px; /* Add some margin */
             width: 80%; /* Make the input field 80% of the container width */
             padding: 15px; /* Increase padding for a larger appearance */
             font-size: 18px; /* Increase font size */
             border: 2px solid #000; /* Add a border */
             border-radius: 5px; /* Rounded corners */
             box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Add a shadow */
+            flex: 1;
         }
     
         #sendInputButton {
-            padding: 15px 30px; /* Increase padding for the button */
+            padding: 15px 20px; /* Increase padding for the button */
             font-size: 18px; /* Increase font size */
             border: none; /* Remove border */
             border-radius: 5px; /* Rounded corners */
             background-color: #007BFF; /* Button background color */
             color: white; /* Text color */
             cursor: pointer; /* Pointer cursor on hover */
-            margin-top: 10px; /* Margin above the button */
             transition: background-color 0.3s; /* Transition effect */
         }
     
@@ -79,20 +82,19 @@
     
 </head>
 <body>
-
+        {% csrf_token %}
         {% csrf_token %}
     
+    {% csrf_token %}
+    
     <div>
-        <h2>Control Your PC's Keyboard from Here:</h2>
-        {% include 'control/keyboard.html' %}
-    </div>
-    <div>
-        <h1>Or alternatively send input</h1>
         {% include 'control/input.html' %}
     </div>
     <div>
-        <h1>Control Your Mouse</h1>
         {% include "control/mouse.html" %}
+    </div>
+    <div>
+        {% include 'control/special_keyboard.html' %}
     </div>
 </body>
 </html>
