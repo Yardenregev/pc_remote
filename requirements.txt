@@ -1,2 +1,5 @@
 django
 pynput
+django-extensions
+Werkzeug
+pyOpenSSL

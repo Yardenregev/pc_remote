@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_extensions',
     'remote',
 ]
 
@@ -111,6 +112,10 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
+
+SECURE_SSL_REDIRECT = True  # Redirect HTTP requests to HTTPS
+SESSION_COOKIE_SECURE = True  # Send cookies only over HTTPS
+CSRF_COOKIE_SECURE = True  # Send CSRF token cookies only over HTTPS
 
 
 # Static files (CSS, JavaScript, Images)
