@@ -36,6 +36,11 @@ class Keyboard:
             KeyboardKey('↓', 'down', 2, 2),  # Down arrow
             KeyboardKey('→', 'right', 2, 3),  # Right arrow
         ]
+        self.special_keys = [
+            KeyboardKey('Backspace', 'backspace', 1, 1),
+            KeyboardKey('Delete', 'delete', 2, 1),
+            KeyboardKey('Enter', 'enter', 3, 1),
+        ]
         
         # self.keys = [
         #     # First row (numbers and special characters)

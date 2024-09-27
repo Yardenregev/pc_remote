@@ -78,6 +78,42 @@
         #sendInputButton:hover {
             background-color: #0056b3; /* Darker color on hover */
         }
+
+        {% comment %} #arrow-keys {
+            margin: 20px 20px 20px 0px; 
+        }
+        #special-keyboard{
+            display: flex;
+            flex-direction: row;
+            flex: 1;
+            gap: 0px;
+        }
+        #special-keys {
+            margin: 20px 0px 20px 20px; 
+        } {% endcomment %}
+        #special-keyboard {
+            display: flex;
+            flex-direction: row;
+            gap: 20px; /* Adds space between arrow keys and special keys */
+            flex-wrap: nowrap; /* Prevents wrapping, ensuring both divs stay on the same row */
+            justify-content: space-between; /* Spreads out the space between the two key groups */
+        }
+        
+        #arrow-keys {
+            margin: 20px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* Ensure 3 columns for arrow keys */
+            grid-gap: 10px;
+            max-width: 200px; /* Set a maximum width to prevent overflow */
+        }
+        
+        #special-keys {
+            margin: 20px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* Customize for the number of special keys */
+            grid-gap: 10px;
+            max-width: 300px; /* Adjust the maximum width to fit within the layout */
+        }
     </style>
     
 </head>
@@ -87,14 +123,8 @@
     
     {% csrf_token %}
     
-    <div>
-        {% include 'control/input.html' %}
-    </div>
-    <div>
-        {% include "control/mouse.html" %}
-    </div>
-    <div>
-        {% include 'control/special_keyboard.html' %}
-    </div>
+    {% include 'control/input.html' %}
+    {% include "control/mouse.html" %}
+    {% include 'control/special_keyboard.html' %}
 </body>
 </html>

@@ -1,4 +1,5 @@
 {% comment %} Arrows, delete, backspace,tab {% endcomment %}
+<div id="special-keyboard">
 <div id="arrow-keys" class="keyboard">
     {% for key in keyboard.arrow_keys %}
     {% if key.empty_space == True %}
@@ -11,6 +12,21 @@
     {% endif %}
     {% endfor %}
 </div>
+
+<div id="special-keys" class="keyboard">
+    {% for key in keyboard.special_keys %}
+    {% if key.empty_space == True %}
+        <span class="{% if key.width > 1 %}wide{% endif %}" 
+        style="grid-row: {{ key.row }}; grid-column: span {{ key.width }};"></span>
+    {% else %}
+        <button class="keyboard-button {% if key.width > 1 %}wide{% endif %}" 
+        style="grid-row: {{ key.row }}; grid-column: span {{ key.width }};" 
+        onclick="sendKey('{{ key.value }}')">{{ key.label }}</button>
+    {% endif %}
+    {% endfor %}
+</div>
+
+
 
 <script>
     function sendKey(key_value) {
@@ -48,3 +64,4 @@
         return cookieValue;
     }
 </script>
+</div>
