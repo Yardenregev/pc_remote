@@ -16,3 +16,12 @@ def keypress(request):
             keyboard.press_key(key)
             return JsonResponse({'status': f'pressed {key}'})
     return JsonResponse({'status': 'Invalid request'}, status=400)
+
+def input(request):
+    if request.method == 'POST':
+        body = json.loads(request.body.decode('utf-8'))
+        message = body.get('input')
+        if message:
+            keyboard.type_input(message)
+            return JsonResponse({'status': f'sent {message}'})
+    return JsonResponse({'status': 'Invalid request'}, status=400)
