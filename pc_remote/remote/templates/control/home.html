@@ -11,20 +11,29 @@
             text-align: center;
             margin-top: 50px;
         }
+        #keyboard {
+            display: grid;
+            grid-template-columns: repeat(15, 1fr); /* Adjust the number of columns as needed */
+            gap: 10px; /* Space between buttons */
+            max-width: 100%; /* Ensure it doesn't exceed the screen width */
+            margin: 0 auto; /* Center the keyboard */
+        }
         .keyboard-button {
             font-size: 20px;
-            padding: 10px 20px;
-            margin: 5px;
+            padding: 10px;
             cursor: pointer;
-            display: inline-block;
+            border: 1px solid #ccc; /* Optional: add a border for better visibility */
+            background-color: #f0f0f0; /* Optional: button background color */
+            transition: background-color 0.3s; /* Smooth background change on hover */
+        }
+        .keyboard-button:hover {
+            background-color: #e0e0e0; /* Darker shade on hover */
         }
         .keyboard-button.wide {
-            padding: 10px 40px;
-        }
-        .row {
-            margin-bottom: 10px;
+            grid-column: span 2; /* Adjust to your desired width for wide buttons */
         }
     </style>
+    
 </head>
 <body>
     <h1>Welcome to the Home Page</h1>
