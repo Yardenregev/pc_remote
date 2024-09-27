@@ -33,6 +33,7 @@ class Keyboard:
             KeyboardKey('<---', 'backspace', 1, 11, width=2),  # Backspace with extra width
 
             # Second row (QWERTY)
+            KeyboardKey('Tab', 'tab', 2, 0, width=2),
             KeyboardKey('Q', 'q', 2, 1), KeyboardKey('W', 'w', 2, 2), KeyboardKey('E', 'e', 2, 3), KeyboardKey('R', 'r', 2, 4), 
             KeyboardKey('T', 't', 2, 5), KeyboardKey('Y', 'y', 2, 6), KeyboardKey('U', 'u', 2, 7), KeyboardKey('I', 'i', 2, 8), 
             KeyboardKey('O', 'o', 2, 9), KeyboardKey('P', 'p', 2, 10),
