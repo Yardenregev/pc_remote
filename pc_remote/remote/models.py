@@ -1,5 +1,8 @@
 # keyboard/models.py
-from pynput.keyboard import Controller , Key
+from pynput.keyboard import Controller as KeyboardController
+from pynput.keyboard import Key
+from pynput.mouse import Controller as MouseController
+
 class KeyboardKey:
     
     def __init__(self, label, value, row, col, width=1):
@@ -56,7 +59,7 @@ class Keyboard:
             KeyboardKey('↑', 'up', 4, 9),  # Up arrow
             KeyboardKey('↓', 'down', 5, 7),  # Down arrow
         ]
-        self.controller = Controller()
+        self.controller = KeyboardController()
     
     def press_key(self, key):
 
@@ -66,3 +69,13 @@ class Keyboard:
 
     def type_input(self, message):
         self.controller.type(message)
+        
+class Mouse:
+    def __init__(self):
+        self.controller = MouseController()
+    
+    def move_mouse(self, x, y):
+        
+        # Move the mouse relative to its current position
+        current_x, current_y = self.controller.position
+        self.controller.position = (current_x + x, current_y + y)

@@ -32,6 +32,13 @@
         .keyboard-button.wide {
             grid-column: span 2; /* Adjust to your desired width for wide buttons */
         }
+        #trackpad {
+            width: 300px; /* Width of the trackpad */
+            height: 300px; /* Height of the trackpad */
+            border: 2px solid #000; /* Border for the trackpad */
+            margin: 0 auto; /* Center the trackpad */
+            position: relative; /* Required for positioning */
+        }
     </style>
     
 </head>
@@ -45,8 +52,11 @@
     </div>
     <div>
         <h1>Or alternatively send input</h1>
-        {%include 'control/input.html' %}
-
+        {% include 'control/input.html' %}
+    </div>
+    <div>
+        <h1>Control Your Mouse</h1>
+        {% include "control/mouse.html" %}
     </div>
 </body>
 </html>
