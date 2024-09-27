@@ -1,0 +1,38 @@
+<!-- keyboard/templates/home.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home - Remote Keyboard Control</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .keyboard-button {
+            font-size: 20px;
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+            display: inline-block;
+        }
+        .keyboard-button.wide {
+            padding: 10px 40px;
+        }
+        .row {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to the Home Page</h1>
+        {% csrf_token %}
+    
+    <div>
+        <h2>Control Your PC's Keyboard from Here:</h2>
+        {% include 'control/keyboard.html' %}  <!-- Include the keyboard here -->
+    </div>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!-- keyboard/templates/keyboard/keyboard.html -->
+
+<div id="keyboard">
+    {% for key in keyboard.keys %}
+    <button class="keyboard-button {% if key.width > 1 %}wide{% endif %}" 
+            style="grid-row: {{ key.row }}; grid-column: span {{ key.width }};" 
+            onclick="sendKey('{{ key.value }}')">{{ key.label }}</button>
+    {% endfor %}
+</div>
+
+<script>
+    function sendKey(key_value) {
+        console.log(key_value)
+        fetch('/keypress/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': getCSRFToken(),
+            },
+            body: JSON.stringify({ key: key_value }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    }
+
+    function getCSRFToken() {
+        let cookieValue = null;
+        const name = 'csrftoken';
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+</script>
