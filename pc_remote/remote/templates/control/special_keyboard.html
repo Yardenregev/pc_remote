@@ -1,3 +1,50 @@
+<style>
+    .keyboard {
+        display: grid;
+        grid-template-columns: repeat(15, 1fr); /* Adjust the number of columns as needed */
+        gap: 10px; /* Space between buttons */
+        max-width: 100%; /* Ensure it doesn't exceed the screen width */
+        margin: 0 auto; /* Center the keyboard */
+    }
+    .keyboard-button {
+        font-size: 20px;
+        padding: 10px;
+        cursor: pointer;
+        border: 1px solid #ccc; /* Optional: add a border for better visibility */
+        background-color: #f0f0f0; /* Optional: button background color */
+        transition: background-color 0.3s; /* Smooth background change on hover */
+    }
+    .keyboard-button:hover {
+        background-color: #e0e0e0; /* Darker shade on hover */
+    }
+    .keyboard-button.wide {
+        grid-column: span 2; /* Adjust to your desired width for wide buttons */
+    }
+    
+    #special-keyboard {
+        display: flex;
+        flex-direction: row;
+        gap: 20px; /* Adds space between arrow keys and special keys */
+        flex-wrap: nowrap; /* Prevents wrapping, ensuring both divs stay on the same row */
+        justify-content: space-between; /* Spreads out the space between the two key groups */
+    }
+    
+    #arrow-keys {
+        margin: 20px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr); /* Ensure 3 columns for arrow keys */
+        grid-gap: 10px;
+        max-width: 200px; /* Set a maximum width to prevent overflow */
+    }
+    
+    #special-keys {
+        margin: 20px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr); /* Customize for the number of special keys */
+        grid-gap: 10px;
+        max-width: 300px; /* Adjust the maximum width to fit within the layout */
+    }
+</style>
 <div id="special-keyboard">
 <div id="arrow-keys" class="keyboard">
     {% for key in keyboard.arrow_keys %}

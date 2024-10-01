@@ -1,14 +1,14 @@
 <!-- control/templates/volume.html -->
 <div>
-    <h2>Volume Control</h2>
+    🔈
     <input type="range" id="volumeSlider" min="0" max="100" value="{{ volume }}" oninput="updateVolume(this.value)">
-    <span id="volumeDisplay">{{ volume }}%</span>
+    <span id="volumeDisplay"></span>
+    🔊
 </div>
 
 <script>
     // Update the displayed volume as the slider is moved
     function updateVolume(val) {
-        document.getElementById("volumeDisplay").innerText = val + "%";
         volumeLevel = parseInt(val);
         // Send the volume value to the server via a POST request
         sendVolumeUpdate(volumeLevel);

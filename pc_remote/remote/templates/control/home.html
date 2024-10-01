@@ -12,95 +12,10 @@
             text-align: center;
             margin-top: 50px;
         }
-        .keyboard {
-            display: grid;
-            grid-template-columns: repeat(15, 1fr); /* Adjust the number of columns as needed */
-            gap: 10px; /* Space between buttons */
-            max-width: 100%; /* Ensure it doesn't exceed the screen width */
-            margin: 0 auto; /* Center the keyboard */
-        }
-        .keyboard-button {
-            font-size: 20px;
-            padding: 10px;
-            cursor: pointer;
-            border: 1px solid #ccc; /* Optional: add a border for better visibility */
-            background-color: #f0f0f0; /* Optional: button background color */
-            transition: background-color 0.3s; /* Smooth background change on hover */
-        }
-        .keyboard-button:hover {
-            background-color: #e0e0e0; /* Darker shade on hover */
-        }
-        .keyboard-button.wide {
-            grid-column: span 2; /* Adjust to your desired width for wide buttons */
-        }
-        #trackpad {
-            width: 300px; /* Width of the trackpad */
-            height: 300px; /* Height of the trackpad */
-            border: 2px solid #000; /* Border for the trackpad */
-            margin: 0 auto; /* Center the trackpad */
-            position: relative; /* Required for positioning */
-        }
-        .mouse-button {
-            padding: 10px 20px;
-            font-size: 16px;
-            margin: 10px;
-            cursor: pointer;
-        }
-        #inputForm {
+        #mouse-scroll-container{
             display: flex;
             flex-direction: row;
-            text-align: center; /* Center the form */
-            margin: 20px; /* Add some margin */
-        }
-    
-        #inputField {
-            margin: 0 20px; /* Add some margin */
-            width: 80%; /* Make the input field 80% of the container width */
-            padding: 15px; /* Increase padding for a larger appearance */
-            font-size: 18px; /* Increase font size */
-            border: 2px solid #000; /* Add a border */
-            border-radius: 5px; /* Rounded corners */
-            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Add a shadow */
-            flex: 1;
-        }
-    
-        #sendInputButton {
-            padding: 15px 20px; /* Increase padding for the button */
-            font-size: 18px; /* Increase font size */
-            border: none; /* Remove border */
-            border-radius: 5px; /* Rounded corners */
-            background-color: #007BFF; /* Button background color */
-            color: white; /* Text color */
-            cursor: pointer; /* Pointer cursor on hover */
-            transition: background-color 0.3s; /* Transition effect */
-        }
-    
-        #sendInputButton:hover {
-            background-color: #0056b3; /* Darker color on hover */
-        }
-
-        #special-keyboard {
-            display: flex;
-            flex-direction: row;
-            gap: 20px; /* Adds space between arrow keys and special keys */
-            flex-wrap: nowrap; /* Prevents wrapping, ensuring both divs stay on the same row */
-            justify-content: space-between; /* Spreads out the space between the two key groups */
-        }
-        
-        #arrow-keys {
-            margin: 20px;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr); /* Ensure 3 columns for arrow keys */
-            grid-gap: 10px;
-            max-width: 200px; /* Set a maximum width to prevent overflow */
-        }
-        
-        #special-keys {
-            margin: 20px;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr); /* Customize for the number of special keys */
-            grid-gap: 10px;
-            max-width: 300px; /* Adjust the maximum width to fit within the layout */
+            gap: 20px;
         }
     </style>
     <script>
@@ -123,10 +38,12 @@
 </head>
 <body>
     {% csrf_token %}
-    {% include 'control/input.html' %}
-    {% include "control/mouse.html" %}
-    {% include 'control/special_keyboard.html' %}
     {% include 'control/volume_control.html' %}
+    {% include 'control/input.html' %}
+    <div id="mouse-scroll-container">
+    {% include "control/mouse.html" %}
     {% include 'control/scroll.html' %}
+    </div>
+    {% include 'control/special_keyboard.html' %}
 </body>
 </html>
