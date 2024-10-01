@@ -1,0 +1,88 @@
+<div style="height: 200px; overflow-y: hidden; text-align: center;">
+    <label for="scrollSlider" style="writing-mode: bt-lr; transform: rotate(180deg);">
+        Scroll Control:
+    </label>
+    <input id="scrollSlider" type="range" min="0" max="100" value="50" step="1" 
+    style="writing-mode: bt-lr; transform: rotate(180deg);
+    height: 200px; -webkit-appearance: slider-vertical;
+    margin: 0 auto; display: block;
+    transition: all 0.3s ease;">
+</div>
+
+<script>
+    // Function to update scroll based on slider value
+    function updateScroll(value) {
+        value = parseInt(value);
+        sendScrollData(value);
+    }
+
+    // Function to send scroll data to the server (optional)
+    function sendScrollData(value) {
+        fetch('/scroll/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': getCSRFToken(),
+            },
+            body: JSON.stringify({ 'value': value }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('success!');
+        })
+        .catch((error) => {
+            console.error('Error sending scroll data:', error);
+        });
+    }
+    // Function to start continuous scrolling
+    function startContinuousScroll() {
+        const slider = document.getElementById("scrollSlider");
+        const update = () => {
+            updateScroll(slider.value);
+        };
+
+        // Call the update function immediately
+        update();
+
+        // Set an interval to continue scrolling
+        scrollInterval = setInterval(update, 100); // Adjust the interval time as needed
+    }
+
+    // Function to stop continuous scrolling and return to center
+    function stopContinuousScroll() {
+        clearInterval(scrollInterval); // Clear the interval
+        smoothReturnToCenter(); // Return slider to center smoothly
+    }
+
+    function smoothReturnToCenter() {
+        const slider = document.getElementById("scrollSlider");
+        let currentValue = parseInt(slider.value);
+        
+        const interval = setInterval(() => {
+            if (currentValue < 50) {
+                currentValue++;
+            } else if (currentValue > 50) {
+                currentValue--;
+            }
+            slider.value = currentValue;
+
+            if (currentValue === 50) {
+                clearInterval(interval); // Stop the animation when reaching 50
+            }
+        }, 10); // Adjust the speed by changing this interval (10ms for smoother animation)
+    }
+
+    // Attach events to the slider
+    const slider = document.getElementById("scrollSlider");
+    slider.addEventListener("mousedown", startContinuousScroll); // Start scrolling on mouse down
+    slider.addEventListener("mouseup", stopContinuousScroll); // Stop scrolling on mouse up
+    slider.addEventListener("mouseleave", stopContinuousScroll); // Stop scrolling if mouse leaves the slider
+    
+    slider.addEventListener("touchstart", startContinuousScroll); // Start scrolling on touch start
+    slider.addEventListener("touchend", stopContinuousScroll); // Stop scrolling on touch end
+
+    
+    slider.addEventListener("input", function() {
+        updateScroll(this.value);
+    });
+</script>

@@ -104,7 +104,17 @@ class Mouse:
             self.controller.click(MouseButton.right)
         else:
             raise ValueError("Invalid button specified. Must be one of 'left' or 'right'.")
-
+    def scroll(self,value):
+        step = 0
+        if 0 < value < 32:
+            step = 2
+        elif 32 <= value < 50:
+            step = 1
+        elif 50 < value < 75:
+            step = -1
+        elif 75 <= value < 100:
+            step = -2
+        self.controller.scroll(0, step)
 class VolumeController:
     def __init__(self):
         devices = AudioUtilities.GetSpeakers()

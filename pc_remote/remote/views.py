@@ -52,6 +52,16 @@ def click_mouse(request):
     
     return JsonResponse({'status': 'error', 'message': 'Invalid request'})
 
+def scroll(request):
+    if request.method == 'POST':
+        body = json.loads(request.body.decode('utf-8'))
+        value = body.get('value',0)
+        print(f'{value=}')
+        mouse.scroll(value)
+        return JsonResponse({'status': 'success'})
+    
+    return JsonResponse({'status': 'error', 'message': 'Invalid request'})
+
 def set_volume(request):
     if request.method == 'POST':
         body = json.loads(request.body.decode('utf-8'))
