@@ -79,18 +79,6 @@
             background-color: #0056b3; /* Darker color on hover */
         }
 
-        {% comment %} #arrow-keys {
-            margin: 20px 20px 20px 0px; 
-        }
-        #special-keyboard{
-            display: flex;
-            flex-direction: row;
-            flex: 1;
-            gap: 0px;
-        }
-        #special-keys {
-            margin: 20px 0px 20px 20px; 
-        } {% endcomment %}
         #special-keyboard {
             display: flex;
             flex-direction: row;
@@ -115,14 +103,26 @@
             max-width: 300px; /* Adjust the maximum width to fit within the layout */
         }
     </style>
-    
+    <script>
+        function getCSRFToken() {
+            let cookieValue = null;
+            const name = 'csrftoken';
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+    </script>
 </head>
 <body>
-        {% csrf_token %}
-        {% csrf_token %}
-    
     {% csrf_token %}
-    
     {% include 'control/input.html' %}
     {% include "control/mouse.html" %}
     {% include 'control/special_keyboard.html' %}
