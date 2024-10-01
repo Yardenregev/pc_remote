@@ -3,6 +3,9 @@ from pynput.keyboard import Controller as KeyboardController
 from pynput.keyboard import Key
 from pynput.mouse import Controller as MouseController
 from pynput.mouse import Button as MouseButton
+from pycaw.pycaw import AudioUtilities, IAudioEndpointVolume
+from ctypes import cast, POINTER
+from comtypes import CLSCTX_ALL
 
 class KeyboardKey:
     
@@ -101,3 +104,17 @@ class Mouse:
             self.controller.click(MouseButton.right)
         else:
             raise ValueError("Invalid button specified. Must be one of 'left' or 'right'.")
+
+class VolumeController:
+    def __init__(self):
+        devices = AudioUtilities.GetSpeakers()
+        interface = devices.Activate(IAudioEndpointVolume._iid_, CLSCTX_ALL, None)
+        self.volume = cast(interface, POINTER(IAudioEndpointVolume))
+        
+    def set_volume(self, level):
+        level = max(0, min(level, 100))  # Ensure the volume stays between 0 and 100
+        self.volume.SetMasterVolumeLevelScalar(level / 100, None)
+
+    def get_volume(self):
+        volume = int(self.volume.GetMasterVolumeLevelScalar() * 100)
+        return volume

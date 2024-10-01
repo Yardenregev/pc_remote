@@ -1,12 +1,14 @@
 from django.http import JsonResponse
 from django.shortcuts import render
-from .models import Keyboard, Mouse
+from .models import Keyboard, Mouse, VolumeController
 import json
 
-keyboard = Keyboard()  # Initialize the keyboard object
-mouse = Mouse() # Initialize the mouse object
+keyboard = Keyboard()
+mouse = Mouse()
+volume_controller = VolumeController()
+
 def index(request):
-    return render(request, 'control/home.html', {'keyboard': keyboard})
+    return render(request, 'control/home.html', {'keyboard': keyboard, 'volume': volume_controller.get_volume()})
 
 def keypress(request):
     if request.method == 'POST':
@@ -47,5 +49,15 @@ def click_mouse(request):
         except Exception as e:
             return JsonResponse({'status': 'error', 'message': str(e)})
             
+    
+    return JsonResponse({'status': 'error', 'message': 'Invalid request'})
+
+def set_volume(request):
+    if request.method == 'POST':
+        body = json.loads(request.body.decode('utf-8'))
+        level = body.get('level',0)
+        print(f'{level=}')
+        volume_controller.set_volume(level)
+        return JsonResponse({'status': 'success'})
     
     return JsonResponse({'status': 'error', 'message': 'Invalid request'})
