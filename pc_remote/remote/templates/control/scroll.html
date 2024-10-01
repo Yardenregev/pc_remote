@@ -1,7 +1,36 @@
-<div style="height: 200px; overflow-y: hidden; text-align: center;">
-    <label for="scrollSlider" style="writing-mode: bt-lr; transform: rotate(180deg);">
-        Scroll Control:
-    </label>
+<style>
+    /* Slider container */
+    #scrollSlider {
+        -webkit-appearance: none; /* Remove default styling */
+        width: 40px; /* Width of the slider track */
+        height: 250px; /* Height of the slider track */
+        writing-mode: bt-lr; /* Vertical slider */
+        margin: 0 auto; /* Center the slider */
+    }
+
+    /* Slider track */
+    #scrollSlider::-webkit-slider-runnable-track {
+        height: 100%; /* Full height */
+        background: #ccc; /* Track color */
+        border-radius: 10px; /* Rounded corners */
+    }
+
+    /* Slider thumb */
+    #scrollSlider::-webkit-slider-thumb {
+        -webkit-appearance: none; /* Remove default styling */
+        appearance: none;
+        width: 30px; /* Width of the thumb */
+        height: 30px; /* Height of the thumb */
+        border-radius: 50%; /* Make it circular */
+        background: #007BFF; /* Thumb color */
+        cursor: pointer; /* Pointer cursor on hover */
+        transition: background 0.3s; /* Smooth transition */
+    }
+
+
+</style>
+
+<div "height: 300px; width: 60px; margin: 0 auto; text-align: center;">
     <input id="scrollSlider" type="range" min="0" max="100" value="50" step="1" 
     style="writing-mode: bt-lr; transform: rotate(180deg);
     height: 200px; -webkit-appearance: slider-vertical;
