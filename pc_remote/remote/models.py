@@ -106,18 +106,19 @@ class Mouse:
             raise ValueError("Invalid button specified. Must be one of 'left' or 'right'.")
     def scroll(self,value):
         step = 0
-        if 0 < value < 15:
-            step = 8
-        elif 15 <= value < 25:
-            step = 4
-        elif 25 <= value < 50:
+        # if 0 < value < 15:
+        #     step = 8
+        # elif 15 <= value < 25:
+        #     step = 4
+        if 0 <= value < 50:
             step = 1
-        elif 50 < value <= 75:
+        elif 50 < value <= 100:
             step = -1
-        elif 75 < value <= 85:
-            step = -4
-        elif 85 < value <= 100:
-            step = -8
+        # elif 75 < value <= 85:
+        #     step = -4
+        # elif 85 < value <= 100:
+        #     step = -8
+        print(f'{step=}')
         self.controller.scroll(0, step)
 class VolumeController:
     def __init__(self):

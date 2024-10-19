@@ -111,7 +111,7 @@
     slider.addEventListener("touchend", stopContinuousScroll); // Stop scrolling on touch end
 
     
-    slider.addEventListener("input", function() {
+    {% comment %} slider.addEventListener("input", function() {
         updateScroll(this.value);
-    });
+    }); {% endcomment %}
 </script>
