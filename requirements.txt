@@ -1,4 +1,5 @@
 django
+django-environ
 pynput
 django-extensions
 Werkzeug
