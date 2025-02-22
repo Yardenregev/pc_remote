@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 import os
 from pathlib import Path
 import environ
+from socket import gethostname
 
 env = environ.Env()
 
@@ -32,7 +33,9 @@ SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG =  env.bool('DJANGO_DEBUG',default=True)
 
-ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=[])
+host = gethostname()
+
+ALLOWED_HOSTS = [host]
 
 
 # Application definition
