@@ -35,7 +35,7 @@ DEBUG =  env.bool('DJANGO_DEBUG',default=True)
 
 host = gethostname()
 
-ALLOWED_HOSTS = [host]
+ALLOWED_HOSTS = [host, f"{host}.local", "localhost", "127.0.0.1"]
 
 
 # Application definition
