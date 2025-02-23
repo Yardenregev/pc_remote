@@ -3,13 +3,18 @@ from django.shortcuts import render
 from .models import Keyboard, Mouse, VolumeController
 import json
 
+from django.contrib.auth.decorators import login_required
+
+
 keyboard = Keyboard()
 mouse = Mouse()
 volume_controller = VolumeController()
 
+@login_required
 def index(request):
     return render(request, 'control/home.html', {'keyboard': keyboard, 'volume': volume_controller.get_volume()})
 
+@login_required
 def keypress(request):
     if request.method == 'POST':
         body = json.loads(request.body.decode('utf-8'))
@@ -19,6 +24,7 @@ def keypress(request):
             return JsonResponse({'status': f'pressed {key}'})
     return JsonResponse({'status': 'Invalid request'}, status=400)
 
+@login_required
 def input(request):
     if request.method == 'POST':
         body = json.loads(request.body.decode('utf-8'))
@@ -28,6 +34,7 @@ def input(request):
             return JsonResponse({'status': f'sent {message}'})
     return JsonResponse({'status': 'Invalid request'}, status=400)
 
+@login_required
 def move_mouse(request):
     if request.method == 'POST':
         body = json.loads(request.body.decode('utf-8'))
@@ -39,6 +46,7 @@ def move_mouse(request):
     
     return JsonResponse({'status': 'error', 'message': 'Invalid request'})
 
+@login_required
 def click_mouse(request):
     if request.method == 'POST':
         body = json.loads(request.body.decode('utf-8'))
@@ -52,6 +60,7 @@ def click_mouse(request):
     
     return JsonResponse({'status': 'error', 'message': 'Invalid request'})
 
+@login_required
 def scroll(request):
     if request.method == 'POST':
         body = json.loads(request.body.decode('utf-8'))
@@ -62,6 +71,7 @@ def scroll(request):
     
     return JsonResponse({'status': 'error', 'message': 'Invalid request'})
 
+@login_required
 def set_volume(request):
     if request.method == 'POST':
         body = json.loads(request.body.decode('utf-8'))

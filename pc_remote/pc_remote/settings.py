@@ -124,6 +124,13 @@ USE_I18N = True
 
 USE_TZ = True
 
+LOGIN_URL = '/login/'
+LOGIN_REDIRECT_URL = '/'
+
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True  # Force login when browser closes
+SESSION_COOKIE_AGE = 3600  # Session expires in 1 hour
+SESSION_SAVE_EVERY_REQUEST = True  # Update session expiry on each request
+
 SECURE_SSL_REDIRECT = True  # Redirect HTTP requests to HTTPS
 SESSION_COOKIE_SECURE = True  # Send cookies only over HTTPS
 CSRF_COOKIE_SECURE = True  # Send CSRF token cookies only over HTTPS
