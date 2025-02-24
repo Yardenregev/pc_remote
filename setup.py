@@ -20,7 +20,7 @@ def install_requirements(pip_path):
 
 def create_env_file():
     print("\nCreating .env file...")
-    print(f"{YELLOW}Please visit {CYAN}https://djecrety.ir/ {YELLOW}to generate a secure Django secret key{COLOR_RESET}")
+    print(f"{COLOR_RESET}{YELLOW}Please visit {CYAN}https://djecrety.ir/ {YELLOW}to generate a secure Django secret key{COLOR_RESET}")
     secret_key = input(GREEN+"Enter your secret key: "+COLOR_RESET)
     
     env_path = Path("pc_remote") / ".env"
