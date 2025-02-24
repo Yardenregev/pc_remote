@@ -33,8 +33,8 @@ def create_env_file():
     print("Please visit https://djecrety.ir/ to generate a secure Django secret key")
     secret_key = input("Enter your secret key: ")
     
-    with open('.env', 'w') as f:
-        f.write(f'SECRET_KEY={secret_key}\n')
+    with open('pc_remote\\.env', 'w') as f:
+        f.write(f'SECRET_KEY="{secret_key}"\n')
 
 def create_superuser():
     print("\nCreating superuser...")
@@ -55,7 +55,7 @@ def create_superuser():
     else:
         python_path = 'venv/bin/python'
     
-    subprocess.check_call([python_path, 'manage.py', 'shell', '-c', command])
+    subprocess.check_call([python_path, 'pc_remote\\manage.py', 'shell', '-c', command])
 
 def generate_ssl_cert():
     print("\nGenerating SSL certificate...")
@@ -85,29 +85,37 @@ def generate_ssl_cert():
     ).sign(private_key, hashes.SHA256())
 
     # Save files
-    with open("pc_remote/certificate.crt", "wb") as f:
+    with open("pc_remote\\certificate.crt", "wb") as f:
         f.write(cert.public_bytes(serialization.Encoding.PEM))
-    with open("pc_remote/private.key", "wb") as f:
+    with open("pc_remote\\private.key", "wb") as f:
         f.write(private_key.private_bytes(
             encoding=serialization.Encoding.PEM,
             format=serialization.PrivateFormat.PKCS8,
             encryption_algorithm=serialization.NoEncryption()
         ))
 
+def run_migrations():
+    print("\nRunning migrations...")
+    
+    if sys.platform == 'win32':
+        python_path = 'venv\\Scripts\\python'
+    else:
+        python_path = 'venv/bin/python'
+    
+    subprocess.check_call([python_path, 'pc_remote\\manage.py', 'migrate'])
+
 def main():
     print("Setting up your project...")
     
-    # Create virtual environment and get paths
     pip_path, _ = create_venv()
     
-    # Install requirements
     install_requirements(pip_path)
     
-    # Create .env file
     create_env_file()
     
-    # Create SSL certificate
     generate_ssl_cert()
+    
+    run_migrations()
     
     # Create superuser
     create_superuser()
