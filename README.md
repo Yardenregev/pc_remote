@@ -46,7 +46,7 @@ The `launch.bat` script will display 3 potential URLs in cyan:
 
 One of these should work. The `.local` address is often easier for devices on the same local network to resolve.
 
-**Note:** you will need to accept navigation to the website for the first time you entered (since it is encrypted through a Self Signed Certificate)
+**Note:** On the first t (since it is encrypted through a Self Signed Certificate)
 
 **Creating a Home Screen Shortcut on your phone (Optional):**
 
