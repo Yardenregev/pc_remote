@@ -12,6 +12,9 @@ Control your PC from your phone like a remote! This project is a Django-based ap
 ## ⚠️ Disclaimer
 This project was only tested on Windows 11.  Compatibility with other operating systems is not guaranteed.
 
+## ⚙️ Prerequisites
+* Python **Over 3.7, Under 3.12**
+
 ## 🛠️ Installation
 1.  Open Command Prompt or Windows PowerShell
 2.  Clone the GitHub repository:
