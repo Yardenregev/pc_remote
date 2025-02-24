@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 import os
 from pathlib import Path
 import environ
-from socket import gethostname
+from socket import gethostname, gethostbyname
 
 env = environ.Env()
 
@@ -34,8 +34,9 @@ SECRET_KEY = env('SECRET_KEY')
 DEBUG =  False
 
 host = gethostname()
+ip_address = gethostbyname(host)
 
-ALLOWED_HOSTS = [host, f"{host}.local", "localhost", "127.0.0.1"]
+ALLOWED_HOSTS = [host, f"{host}.local", ip_address]
 
 
 # Application definition
