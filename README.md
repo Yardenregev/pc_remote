@@ -24,7 +24,7 @@ cd pc_remote_controller
 ```
 4.  Run the installation script:
    ```sh
-   install.bat
+   .\install.bat
    ```
 5.  Follow the on-screen instructions during the installation process.
     1. The username and password you have entered when creating the user in the installation process will be the credentials you will need to use when logging in.
@@ -32,7 +32,7 @@ cd pc_remote_controller
 ## 🏃‍♂️ Running the Application
 1.  Run the launch script:
    ```sh
-   launch.bat
+   .\launch.bat
    ```
 2.  (Optional) Create a desktop shortcut for `launch.bat` for easier access.
 
