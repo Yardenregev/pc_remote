@@ -19,5 +19,7 @@ application = get_wsgi_application()
 
 host = gethostname()
 ip_address = gethostbyname(host)
-print(f"{Fore.GREEN}Access the platform on{Fore.CYAN} https://{host}:8443 {Fore.GREEN}or{Fore.CYAN} https://{host}.local:8443\r\n\
-      {Fore.GREEN}or{Fore.CYAN} https://{ip_address}:8443 {Style.RESET_ALL}")
+print(f"{Fore.GREEN}Access the platform through one of:\r\n\
+      {Fore.CYAN}1. https://{host}:8443\r\n\
+      2. https://{host}.local:8443\r\n\
+      3. https://{ip_address}:8443 {Style.RESET_ALL}")
