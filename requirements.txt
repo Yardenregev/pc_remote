@@ -4,3 +4,4 @@ pynput
 django-extensions
 pycaw
 django-sslserver
+colorama

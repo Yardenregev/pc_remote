@@ -10,6 +10,9 @@ from cryptography.hazmat.primitives import hashes, serialization
 from cryptography.hazmat.primitives.asymmetric import rsa
 import datetime
 
+from colorama import init as colorama_init
+from colorama import Fore, Style
+
 def create_venv():
     print("\nCreating virtual environment...")
     venv.create('venv', with_pip=True)
@@ -30,22 +33,22 @@ def install_requirements(pip_path):
 
 def create_env_file():
     print("\nCreating .env file...")
-    print("Please visit https://djecrety.ir/ to generate a secure Django secret key")
-    secret_key = input("Enter your secret key: ")
+    print(f"{Fore.YELLOW}Please visit{Fore.CYAN}https://djecrety.ir/{Fore.YELLOW}to generate a secure Django secret key{Style.RESET_ALL}")
+    secret_key = input(Fore.GREEN+"Enter your secret key: "+Style.RESET_ALL)
     
     with open('pc_remote\\.env', 'w') as f:
         f.write(f'SECRET_KEY="{secret_key}"\n')
 
 def create_superuser():
     print("\nCreating superuser...")
-    username = input("Enter superuser username: ")
-    email = input("Enter superuser email: ")
-    password = getpass("Enter superuser password: ")
-    confirm_password = getpass("Confirm password: ")
+    username = input(Fore.GREEN+"Enter superuser username: "+Style.RESET_ALL)
+    email = input(Fore.GREEN+"Enter superuser email: "+Style.RESET_ALL)
+    password = getpass(Fore.GREEN+"Enter superuser password: "+Style.RESET_ALL)
+    confirm_password = getpass(Fore.GREEN+"Confirm password: "+Style.RESET_ALL)
     while password != confirm_password:
-        print("Passwords don't match!")
-        password = getpass("Enter superuser password: ")
-        confirm_password = getpass("Confirm password: ")
+        print(Fore.RED+"Passwords don't match!"+Style.RESET_ALL)
+        password = getpass(Fore.GREEN+"Enter superuser password: "+Style.RESET_ALL)
+        confirm_password = getpass(Fore.GREEN+"Confirm password: "+Style.RESET_ALL)
     
     # Create the command to run with manage.py
     command = f"from django.contrib.auth import get_user_model; User = get_user_model(); User.objects.create_superuser('{username}', '{email}', '{password}')"
@@ -105,6 +108,7 @@ def run_migrations():
     subprocess.check_call([python_path, 'pc_remote\\manage.py', 'migrate'])
 
 def main():
+    colorama_init()
     print("Setting up your project...")
     
     pip_path, _ = create_venv()
@@ -120,7 +124,7 @@ def main():
     # Create superuser
     create_superuser()
     
-    print("\n=== SETUP COMPLETE ===")
+    print(Fore.GREEN+"\n=== SETUP COMPLETE ==="+Style.RESET_ALL)
 
 if __name__ == "__main__":
     main()
