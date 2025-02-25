@@ -49,7 +49,8 @@ The `launch.bat` script will display 3 potential URLs in cyan:
 
 One of these should work. The `.local` address is often easier for devices on the same local network to resolve.
 
-**Note:** On the first time you try to access the application you will see a "Connection is not private message" (since it is encrypted through a Self Signed Certificate). You should click on "Show details" -> "visit this website" -> "visit website".
+**Note:** On the first time you try to access the application you will see a "Connection is not private message" (since the application is encrypted through a Self Signed Certificate).
+You should click on "Show details" -> "visit this website" -> "visit website", then refresh the page.
 
 **Creating a Home Screen Shortcut on your phone (Optional):**
 
